@@ -24,9 +24,16 @@ export class ItemService {
         map(items =>
           items.map((item: ListItemResponse): ListItem => {
             return {
+              id: item.Id,
               title: item.Title,
-              description: `Family : ${item.Family}`,
+              detail: `Family : ${item.Family}`,
+              extraDetail:
+                term === 'animals'
+                  ? `CollectiveNoun: ${item.CollectiveNoun}`
+                  : `Genus: ${item.Genus}`,
+              description: item.Description,
               imageUrl: item.ImageURLs.FullSize,
+              thumbNailUrl: item.ImageURLs.Thumb,
             };
           })
         )

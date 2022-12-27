@@ -12,7 +12,7 @@ import {
   ListItemComponent,
   HamburgerMenuComponent,
 } from './components';
-import { AppHeaderContainer } from './containers';
+import { AppHeaderContainer, AppModalContainer } from './containers';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { AppHeaderContainer } from './containers';
     ListItemComponent,
     HamburgerMenuComponent,
     AppHeaderContainer,
+    AppModalContainer,
   ],
   imports: [
     BrowserModule,

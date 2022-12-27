@@ -2,4 +2,7 @@
   [items]="itemTypes"
   [selectedItemTypeId]="selectedItemTypeId"
   [itemTypeChange]="onItemTypeChange"></app-header>
-<app-items class="app-items" [items]="listItems"></app-items>
+<app-items
+  class="app-items"
+  [items]="listItems"
+  (itemClick)="showModal($event)"></app-items>

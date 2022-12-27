@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Dialog, DIALOG_DATA } from '@angular/cdk/dialog';
 import { ItemService } from './services/ItemService';
-import { ListItems } from './types/ListItem';
+import { ListItems, ListItem } from './types/ListItem';
 import { ItemTypes } from './types/ItemType';
+import { AppModalContainer } from './containers/app-modal/app-modal.container';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +17,9 @@ export class AppComponent implements OnInit {
     { id: 'fruitveg', label: 'FRUITS & VEGGIES' },
   ];
   listItems: ListItems = [];
+  selectedItem: ListItem | undefined;
 
-  constructor(private itemService: ItemService) {}
+  constructor(public dialog: Dialog, private itemService: ItemService) {}
 
   ngOnInit(): void {
     const itemTypeId = this.itemTypes[0].id;
@@ -27,6 +30,14 @@ export class AppComponent implements OnInit {
   onItemTypeChange = (itemTypeId: string) => {
     this.selectedItemTypeId = itemTypeId;
     this.fetchAndSetListItems(itemTypeId);
+  };
+
+  showModal = (itemId: number) => {
+    this.selectedItem = this.listItems.find(item => item.id === itemId);
+    this.dialog.open(AppModalContainer, {
+      data: this.selectedItem,
+      autoFocus: false,
+    });
   };
 
   fetchAndSetListItems = (itemTypeId: string) => {

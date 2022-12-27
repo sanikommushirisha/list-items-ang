@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { trigger, style, transition, animate } from '@angular/animations';
@@ -23,6 +23,7 @@ import { ListItems } from 'src/app/types/ListItem';
 export class ListItemsComponent implements OnInit {
   gridSize: number;
   @Input() items: ListItems;
+  @Output() itemClick = new EventEmitter();
   breakPointColMap = {
     [Breakpoints.Large]: 4,
     [Breakpoints.Medium]: 3,
@@ -39,6 +40,9 @@ export class ListItemsComponent implements OnInit {
         this.screenSizeChanged();
       });
   }
+  onListItemClick = (id: number) => {
+    this.itemClick.emit(id);
+  };
 
   screenSizeChanged = () => {
     for (const [breakPointSize, gridSize] of Object.entries(

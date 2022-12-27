@@ -2,8 +2,7 @@
   <img [src]="imageUrl" class="list-item-image" />
   <div class="mat-typography list-item-text-wrap">
     <div class="list-item-text">
-      <h2>{{ title }}</h2>
-      <p>{{ description }}</p>
+      <ng-content></ng-content>
     </div>
   </div>
 </div>

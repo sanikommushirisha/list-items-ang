@@ -4,12 +4,11 @@
     [cols]="gridSize"
     rowHeight="3:2"
     gutterSize="4px">
-    <mat-grid-tile *ngFor="let item of items"
-      ><app-list-item
-        class="list-items"
-        [title]="item.title"
-        [description]="item.description"
-        [imageUrl]="item.imageUrl"></app-list-item
-    ></mat-grid-tile>
+    <mat-grid-tile *ngFor="let item of items" (click)="onListItemClick(item.id)"
+      ><app-list-item class="list-items" [imageUrl]="item.imageUrl">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.detail }}</p>
+      </app-list-item></mat-grid-tile
+    >
   </mat-grid-list>
 </div>
