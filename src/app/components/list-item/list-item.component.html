@@ -1,6 +1,11 @@
 <div class="list-item">
   <img [src]="imageUrl" class="list-item-image" />
-  <div class="mat-typography list-item-text-wrap">
+  <div
+    [ngClass]="{
+      'mat-typography': true,
+      'list-item-text-wrap': variant === 'overlap',
+      'list-item-text-align': variant === 'align'
+    }">
     <div class="list-item-text">
       <ng-content></ng-content>
     </div>

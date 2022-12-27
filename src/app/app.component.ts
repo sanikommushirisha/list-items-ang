@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
     this.dialog.open(AppModalContainer, {
       data: this.selectedItem,
       autoFocus: false,
+      maxWidth: '70vw',
     });
   };
 

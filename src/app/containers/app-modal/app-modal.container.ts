@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ListItem } from 'src/app/types/ListItem';
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 
@@ -7,6 +8,16 @@ import { DIALOG_DATA } from '@angular/cdk/dialog';
   templateUrl: './app-modal.container.html',
   styleUrls: ['./app-modal.container.sass'],
 })
-export class AppModalContainer {
-  constructor(@Inject(DIALOG_DATA) public item: ListItem) {}
+export class AppModalContainer implements OnInit {
+  constructor(
+    @Inject(DIALOG_DATA) public item: ListItem,
+    public breakpointObserver: BreakpointObserver
+  ) {}
+  variant: string;
+
+  ngOnInit(): void {
+    this.breakpointObserver.observe([Breakpoints.XSmall]).subscribe(result => {
+      this.variant = result.matches ? 'align' : 'overlap';
+    });
+  }
 }
