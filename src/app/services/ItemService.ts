@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { DisplayItems } from '../types/DisplayItem';
+import {
+  ListItems,
+  ListItem,
+  ListItemResponse,
+  ListItemsResponse,
+} from '../types/ListItem';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -10,10 +15,22 @@ import { map, catchError } from 'rxjs/operators';
 export class ItemService {
   constructor(private http: HttpClient) {}
 
-  public get(term: string): Observable<DisplayItems> {
-    return this.http.get<DisplayItems>(
-      `https://raw.githubusercontent.com/BuyProperly/interview/main/photos/${term}.json`
-    );
+  public get(term: string): Observable<ListItems> {
+    return this.http
+      .get<ListItemsResponse>(
+        `https://raw.githubusercontent.com/BuyProperly/interview/main/photos/${term}.json`
+      )
+      .pipe(
+        map(items =>
+          items.map((item: ListItemResponse): ListItem => {
+            return {
+              title: item.Title,
+              description: `Family : ${item.Family}`,
+              imageUrl: item.ImageURLs.FullSize,
+            };
+          })
+        )
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

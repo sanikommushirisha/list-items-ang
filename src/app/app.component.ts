@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Component, OnInit } from '@angular/core';
 import { ItemService } from './services/ItemService';
-import { DisplayItems } from './types/DisplayItem';
+import { ListItems } from './types/ListItem';
+import { TabItems } from './types/TabItem';
 
 @Component({
   selector: 'app-root',
@@ -9,28 +9,26 @@ import { DisplayItems } from './types/DisplayItem';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent implements OnInit {
-  //selectedTabIndex = 0;
-  photoLists = [
+  tabItems: TabItems = [
     { id: 'animals', label: 'ANIMALS' },
-    { id: 'fruits-veggies', label: 'FRUITS & VEGGIES' },
+    { id: 'fruitveg', label: 'FRUITS & VEGGIES' },
   ];
-  displayItems: DisplayItems = [];
+  listItems: ListItems = [];
 
   constructor(private itemService: ItemService) {}
 
   ngOnInit(): void {
-    const itemTypeId = this.photoLists[0].id;
-    this.fetchAndSetDisplayItems(itemTypeId);
+    const itemTypeId = this.tabItems[0].id;
+    this.fetchAndSetListItems(itemTypeId);
   }
 
-  fetchAndSetDisplayItems = (itemTypeId: string) => {
-    return this.itemService.get(itemTypeId).subscribe(displayItems => {
-      this.displayItems = displayItems;
-    });
+  onActiveTabIdChange = (itemTypeId: string) => {
+    this.fetchAndSetListItems(itemTypeId);
   };
 
-  onTabChange = (tabEvent: MatTabChangeEvent) => {
-    const itemTypeId = this.photoLists[tabEvent.index].id;
-    this.fetchAndSetDisplayItems(itemTypeId);
+  fetchAndSetListItems = (itemTypeId: string) => {
+    return this.itemService.get(itemTypeId).subscribe(listItems => {
+      this.listItems = listItems;
+    });
   };
 }

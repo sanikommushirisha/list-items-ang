@@ -1,4 +1,6 @@
 export interface TabItem {
-  id: number;
+  id: string;
   label: string;
 }
+
+export type TabItems = Array<TabItem>;

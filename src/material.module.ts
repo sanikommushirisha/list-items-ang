@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
-  exports: [MatIconModule, MatToolbarModule, MatTabsModule],
+  exports: [MatIconModule, MatToolbarModule, MatTabsModule, MatGridListModule],
 })
 export class MaterialModule {}

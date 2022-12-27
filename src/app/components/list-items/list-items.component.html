@@ -1,0 +1,15 @@
+<div class="list-items-wrap" [@onEnterAnimation]="items">
+  <mat-grid-list
+    class="grid-list-items"
+    cols="4"
+    rowHeight="3:2"
+    gutterSize="4px">
+    <mat-grid-tile *ngFor="let item of items"
+      ><app-list-item
+        class="list-items"
+        [title]="item.title"
+        [description]="item.description"
+        [imageUrl]="item.imageUrl"></app-list-item
+    ></mat-grid-tile>
+  </mat-grid-list>
+</div>
