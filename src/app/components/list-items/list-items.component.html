@@ -1,7 +1,7 @@
 <div class="list-items-wrap" [@onEnterAnimation]="items">
   <mat-grid-list
     class="grid-list-items"
-    cols="4"
+    [cols]="gridSize"
     rowHeight="3:2"
     gutterSize="4px">
     <mat-grid-tile *ngFor="let item of items"

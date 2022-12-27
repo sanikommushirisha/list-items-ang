@@ -7,7 +7,7 @@ import {
   ListItemResponse,
   ListItemsResponse,
 } from '../types/ListItem';
-import { map, catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

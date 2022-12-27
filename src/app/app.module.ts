@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,6 +11,7 @@ import {
   ListItemsComponent,
   ListItemComponent,
 } from './components';
+import { AppHeaderContainer } from './containers';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,13 @@ import {
     ItemTabGroupComponent,
     ListItemsComponent,
     ListItemComponent,
+    AppHeaderContainer,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    LayoutModule,
     MaterialModule,
   ],
   providers: [],

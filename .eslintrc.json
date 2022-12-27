@@ -24,6 +24,12 @@
             "style": "camelCase"
           }
         ],
+        "@angular-eslint/component-class-suffix":[
+          "error",
+          {
+            "suffixes": ["Component","Container"]
+          }
+        ],
         "@angular-eslint/component-selector": [
           "error",
           {

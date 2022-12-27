@@ -1,0 +1,11 @@
+<mat-toolbar color="#ffffff">
+  <button
+    class="header-icon"
+    mat-icon-button
+    aria-label="Example icon-button with menu icon">
+    <mat-icon color="primary">photo_library</mat-icon>
+  </button>
+  <app-item-tab-group
+    [items]="items"
+    (itemIdChange)="itemIdChange($event)"></app-item-tab-group>
+</mat-toolbar>
