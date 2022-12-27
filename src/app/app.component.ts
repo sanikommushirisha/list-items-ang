@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from './services/ItemService';
 import { ListItems } from './types/ListItem';
-import { TabItems } from './types/TabItem';
+import { ItemTypes } from './types/ItemType';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,8 @@ import { TabItems } from './types/TabItem';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent implements OnInit {
-  tabItems: TabItems = [
+  selectedItemTypeId: string;
+  itemTypes: ItemTypes = [
     { id: 'animals', label: 'ANIMALS' },
     { id: 'fruitveg', label: 'FRUITS & VEGGIES' },
   ];
@@ -18,11 +19,13 @@ export class AppComponent implements OnInit {
   constructor(private itemService: ItemService) {}
 
   ngOnInit(): void {
-    const itemTypeId = this.tabItems[0].id;
+    const itemTypeId = this.itemTypes[0].id;
+    this.selectedItemTypeId = itemTypeId;
     this.fetchAndSetListItems(itemTypeId);
   }
 
-  onActiveTabIdChange = (itemTypeId: string) => {
+  onItemTypeChange = (itemTypeId: string) => {
+    this.selectedItemTypeId = itemTypeId;
     this.fetchAndSetListItems(itemTypeId);
   };
 

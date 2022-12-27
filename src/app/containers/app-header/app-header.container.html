@@ -1,11 +1,20 @@
 <mat-toolbar color="#ffffff">
-  <button
-    class="header-icon"
-    mat-icon-button
-    aria-label="Example icon-button with menu icon">
-    <mat-icon color="primary">photo_library</mat-icon>
-  </button>
-  <app-item-tab-group
+  <div [ngClass]="{ 'mobile-wrap': isSmallScreen }">
+    <button
+      class="icon-button"
+      mat-icon-button
+      aria-label="Example icon-button with menu icon"
+      (click)="onLogoClick()">
+      <mat-icon color="primary">photo_library</mat-icon>
+    </button>
+  </div>
+  <app-tab-group
+    *ngIf="!isSmallScreen"
+    [selectedItemId]="selectedItemTypeId"
     [items]="items"
-    (itemIdChange)="itemIdChange($event)"></app-item-tab-group>
+    (selectedTabChange)="itemTypeChange($event)"></app-tab-group>
+  <app-hamburger-menu
+    *ngIf="isSmallScreen"
+    [items]="items"
+    (menuItemClick)="itemTypeChange($event)"></app-hamburger-menu>
 </mat-toolbar>

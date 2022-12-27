@@ -1,0 +1,11 @@
+<button class="icon-button" mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button
+    mat-menu-item
+    *ngFor="let item of items"
+    (click)="onMenuItemClick(item.id)">
+    <span>{{ item.label }}</span>
+  </button>
+</mat-menu>

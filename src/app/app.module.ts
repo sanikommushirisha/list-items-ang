@@ -7,18 +7,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
 import { AppComponent } from './app.component';
 import {
-  ItemTabGroupComponent,
+  TabGroupComponent,
   ListItemsComponent,
   ListItemComponent,
+  HamburgerMenuComponent,
 } from './components';
 import { AppHeaderContainer } from './containers';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemTabGroupComponent,
+    TabGroupComponent,
     ListItemsComponent,
     ListItemComponent,
+    HamburgerMenuComponent,
     AppHeaderContainer,
   ],
   imports: [
