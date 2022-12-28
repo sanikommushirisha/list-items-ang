@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,7 +30,6 @@ import { AppHeaderContainer, AppModalContainer } from './containers';
     BrowserAnimationsModule,
     LayoutModule,
     MaterialModule,
-    NgOptimizedImage,
   ],
   providers: [],
   bootstrap: [AppComponent],

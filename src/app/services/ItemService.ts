@@ -7,7 +7,7 @@ import {
   ListItemResponse,
   ListItemsResponse,
 } from '../types/ListItem';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -36,13 +36,15 @@ export class ItemService {
               thumbNailUrl: item.ImageURLs.Thumb,
             };
           })
-        )
+        ),
+        catchError(this.handleError)
       );
   }
 
   private handleError(error: HttpErrorResponse) {
-    // Write internal error handling logic here
+    // Write internal error handling logic here -> Sending it to error monitoring or reporting software
     console.log(error);
-    return throwError(() => new Error('Unable to fetch data. Try again'));
+    const message = 'Unable to fetch data. Try again';
+    return throwError(() => new Error(message));
   }
 }

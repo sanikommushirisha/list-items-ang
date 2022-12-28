@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Dialog } from '@angular/cdk/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ItemService } from './services/ItemService';
 import { ListItems, ListItem } from './types/ListItem';
 import { ItemTypes } from './types/ItemType';
@@ -19,7 +20,11 @@ export class AppComponent implements OnInit {
   listItems: ListItems = [];
   selectedItem: ListItem | undefined;
 
-  constructor(public dialog: Dialog, private itemService: ItemService) {}
+  constructor(
+    public dialog: Dialog,
+    private itemService: ItemService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     const itemTypeId = this.itemTypes[0].id;
@@ -42,8 +47,14 @@ export class AppComponent implements OnInit {
   };
 
   fetchAndSetListItems = (itemTypeId: string) => {
-    return this.itemService.get(itemTypeId).subscribe(listItems => {
-      this.listItems = listItems;
+    return this.itemService.get(itemTypeId).subscribe({
+      next: listItems => {
+        this.listItems = listItems;
+      },
+      error: error => {
+        this.listItems = [];
+        this.snackBar.open(error.message, 'Dismiss');
+      },
     });
   };
 }
