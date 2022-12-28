@@ -16,7 +16,7 @@ import { AppModalContainer } from './containers/app-modal/app-modal.container';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent implements OnInit {
-  itemTypeId: Observable<string>; // Item type being displayed - 'animals' or 'fruits & veg'
+  itemTypeId: Observable<string>; // Displayed Item type - 'animals' or 'fruits & veg'
   itemTypes: ItemTypes = [
     // Used to display items in tab pane or burger menu based on screensize
     { id: 'animals', label: 'ANIMALS' },
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     private snackBar: MatSnackBar,
     private store: Store<{ itemTypeId: string }>
   ) {
-    this.itemTypeId = store.select('itemTypeId');
+    this.itemTypeId = store.select('itemTypeId'); //Read persisted state from local storage
   }
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   };
 
   fetchAndSetListItems = (itemTypeId: string) => {
-    // Fetch and set list items on logo click or tab change or burger menu item click(in small devices)
+    // Fetch and Set list items on tab change, logo click or burger menu item click(in small devices)
     return this.itemService.get(itemTypeId).subscribe({
       next: listItems => {
         this.listItems = listItems;
@@ -58,7 +58,8 @@ export class AppComponent implements OnInit {
     });
   };
 
-  showModal = (itemId: number) => {
+  onListItemClick = (itemId: number) => {
+    // Show Item details inside a modal
     this.selectedItem = this.listItems.find(item => item.id === itemId);
     this.dialog.open(AppModalContainer, {
       data: this.selectedItem,

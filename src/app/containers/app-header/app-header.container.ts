@@ -12,7 +12,7 @@ export class AppHeaderContainer implements OnInit {
   @Input() items: ItemTypes;
   @Input() selectedItemTypeId: string | null;
   @Input() itemTypeChange: (itemId: string) => void;
-  isSmallScreen: boolean;
+  isSmallScreen: boolean; // Used to switch between tab and burger menu
 
   constructor(public breakpointObserver: BreakpointObserver) {}
 
