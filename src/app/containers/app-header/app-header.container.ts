@@ -10,7 +10,7 @@ import { ItemTypes } from '../../types/ItemType';
 })
 export class AppHeaderContainer implements OnInit {
   @Input() items: ItemTypes;
-  @Input() selectedItemTypeId: string;
+  @Input() selectedItemTypeId: string | null;
   @Input() itemTypeChange: (itemId: string) => void;
   isSmallScreen: boolean;
 

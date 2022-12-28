@@ -13,6 +13,8 @@ import {
   HamburgerMenuComponent,
 } from './components';
 import { AppHeaderContainer, AppModalContainer } from './containers';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { AppHeaderContainer, AppModalContainer } from './containers';
     BrowserAnimationsModule,
     LayoutModule,
     MaterialModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Dialog } from '@angular/cdk/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { setItemTypeId } from './store/root/root.actions';
+
 import { ItemService } from './services/ItemService';
 import { ListItems, ListItem } from './types/ListItem';
 import { ItemTypes } from './types/ItemType';
@@ -12,7 +16,7 @@ import { AppModalContainer } from './containers/app-modal/app-modal.container';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent implements OnInit {
-  selectedItemTypeId: string; // Item type being displayed - 'animals' or 'fruits & veg'
+  itemTypeId: Observable<string>; // Item type being displayed - 'animals' or 'fruits & veg'
   itemTypes: ItemTypes = [
     // Used to display items in tab pane or burger menu based on screensize
     { id: 'animals', label: 'ANIMALS' },
@@ -24,17 +28,20 @@ export class AppComponent implements OnInit {
   constructor(
     public dialog: Dialog,
     private itemService: ItemService,
-    private snackBar: MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar,
+    private store: Store<{ itemTypeId: string }>
+  ) {
+    this.itemTypeId = store.select('itemTypeId');
+  }
 
   ngOnInit(): void {
-    const itemTypeId = this.itemTypes[0].id;
-    this.selectedItemTypeId = itemTypeId;
-    this.fetchAndSetListItems(itemTypeId);
+    this.itemTypeId.subscribe(itemTypeId =>
+      this.fetchAndSetListItems(itemTypeId)
+    );
   }
 
   onItemTypeChange = (itemTypeId: string) => {
-    this.selectedItemTypeId = itemTypeId;
+    this.store.dispatch(setItemTypeId({ itemTypeId }));
     this.fetchAndSetListItems(itemTypeId);
   };
 

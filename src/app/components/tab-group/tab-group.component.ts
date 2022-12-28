@@ -15,7 +15,7 @@ import { ItemTypes } from '../../types/ItemType';
 })
 export class TabGroupComponent implements OnChanges {
   @Input() items: ItemTypes;
-  @Input() selectedItemId: string;
+  @Input() selectedItemId: string | null;
   @Output() selectedTabChange = new EventEmitter<string>();
   selectedIndex: number;
   ngOnChanges() {

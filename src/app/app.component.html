@@ -1,6 +1,6 @@
 <app-header
   [items]="itemTypes"
-  [selectedItemTypeId]="selectedItemTypeId"
+  [selectedItemTypeId]="itemTypeId | async"
   [itemTypeChange]="onItemTypeChange"></app-header>
 <app-items
   class="app-items"
