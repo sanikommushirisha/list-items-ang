@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Dialog, DIALOG_DATA } from '@angular/cdk/dialog';
+import { Dialog } from '@angular/cdk/dialog';
 import { ItemService } from './services/ItemService';
 import { ListItems, ListItem } from './types/ListItem';
 import { ItemTypes } from './types/ItemType';
